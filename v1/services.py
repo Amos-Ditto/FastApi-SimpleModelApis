@@ -28,3 +28,13 @@ def create_user(db: _orm.Session, user: _schemas.UserCreate):
 
 def get_users(db:_orm.Session, skip: int, limit: int):
     return db.query(_models.User).offset(skip).limit(limit).all()
+
+def get_user(db:_orm.Session, user_id: int):
+    return db.query(_models.User).filter(_models.User.id == user_id).first()
+
+def create_post(db: _orm.Session, post: _schemas.PostCreate, user_id: int):
+    post = _models.Post(**post.dict(), owner_id=user_id)
+    db.add(post)
+    db.commit()
+    db.refresh(post)
+    return post

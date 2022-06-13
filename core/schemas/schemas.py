@@ -5,7 +5,7 @@ class _PostBase(_pydantic.BaseModel):
     title: str
     content: str
 
-class PostCreated(_PostBase):
+class PostCreate(_PostBase):
     pass
 
 class Post(_PostBase):

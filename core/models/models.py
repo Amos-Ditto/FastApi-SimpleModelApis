@@ -16,7 +16,7 @@ class Post(_database.Base):
     __tablename__ = "posts"
     id = _sql.Column(_sql.Integer, primary_key=True, index=True)
     title = _sql.Column(_sql.String(30), index=True)
-    content = _sql.Column(_sql.Text)
+    content = _sql.Column(_sql.String, index=True)
     owner_id = _sql.Column(_sql.Integer, _sql.ForeignKey("users.id"))
     date_created = _sql.Column(_sql.DateTime, default=_dt.datetime.utcnow)
     date_last_updated = _sql.Column(_sql.DateTime, default=_dt.datetime.utcnow)
